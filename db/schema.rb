@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_19_151633) do
+ActiveRecord::Schema.define(version: 2020_07_20_082837) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,9 @@ ActiveRecord::Schema.define(version: 2020_07_19_151633) do
     t.integer "count", default: 1
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "order_id"
     t.index ["guest_user_id"], name: "index_baskets_on_guest_user_id"
+    t.index ["order_id"], name: "index_baskets_on_order_id"
     t.index ["phone_id"], name: "index_baskets_on_phone_id"
   end
 
@@ -29,6 +31,25 @@ ActiveRecord::Schema.define(version: 2020_07_19_151633) do
     t.string "token"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.bigint "personal_data_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["personal_data_id"], name: "index_orders_on_personal_data_id"
+  end
+
+  create_table "personal_data", force: :cascade do |t|
+    t.string "full_name"
+    t.string "phone"
+    t.string "email"
+    t.string "address"
+    t.string "comment"
+    t.bigint "guest_user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["guest_user_id"], name: "index_personal_data_on_guest_user_id"
   end
 
   create_table "phones", force: :cascade do |t|

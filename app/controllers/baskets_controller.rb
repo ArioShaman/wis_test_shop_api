@@ -59,43 +59,43 @@ class BasketsController < ApplicationController
             end
         end
     end
-end
 
-private 
-
-def set_basket
-    @guest_user = GuestUser.where(token: params[:guest_user_id]).first
-    if @guest_user.present?
-        @phone = Phone.find(params[:phone_id])
-        if @phone.present?
-            @basket_el = Basket.where(guest_user: @guest_user, phone: @phone).first
-            yield(@basket_el)
+    private 
+    def set_basket
+        @guest_user = GuestUser.where(token: params[:guest_user_id]).first
+        if @guest_user.present?
+            @phone = Phone.find(params[:phone_id])
+            if @phone.present?
+                @basket_el = Basket.where(guest_user: @guest_user, phone: @phone).first
+                yield(@basket_el)
+            else
+                render json: {
+                    msg: "Phone not found",
+                    error: true
+                }
+            end
         else
             render json: {
-                msg: "Phone not found",
+                msg: "User not found",
                 error: true
             }
         end
-    else
-        render json: {
-            msg: "User not found",
-            error: true
-        }
+    end
+
+    def set_basket_for_action
+        @guest_user = GuestUser.where(token: params[:guest_user_id]).first
+        if @guest_user.present?
+            @basket_el = Basket.find(params[:basket_id])
+            yield(@basket_el)
+        else
+            render json: {
+                msg: "User not found",
+                error: true
+            }
+        end
     end
 end
 
-def set_basket_for_action
-    @guest_user = GuestUser.where(token: params[:guest_user_id]).first
-    if @guest_user.present?
-        @basket_el = Basket.find(params[:basket_id])
-        yield(@basket_el)
-    else
-        render json: {
-            msg: "User not found",
-            error: true
-        }
-    end
-end
 
 
 

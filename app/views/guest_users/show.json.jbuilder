@@ -7,10 +7,10 @@ json.id @guest_user.token
 # и количество всех элементов, после чего с фронта постепенно програжать остальные элементы
 
 json.wish_list @guest_user.wish_lists do |wish_el|
-    json.partial! wish_el, as: :wish_el
+    json.partial! wish_el, as: :wish_el, partial: 'wish_lists/wish_list'
 end
 
 # Здесь то же самое
 json.basket @guest_user.baskets.not_ordered do |basket_el|
-    json.partial! basket_el, as: :basket_el
+    json.partial! basket_el, as: :basket_el, partial: 'baskets/basket'
 end

@@ -35,10 +35,6 @@ class BasketsController < ApplicationController
         set_basket do |basket_el|
             @basket_el = basket_el
             if @basket_el.present?
-                # добавить количество
-                @basket_el.update(count: (@basket_el.count + params[:count]))
-            else
-                # новый элемент корзины
                 @basket_el = Basket.create(phone: @phone, guest_user: @guest_user, count: params[:count])
             end
             return @basket_el

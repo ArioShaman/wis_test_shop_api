@@ -9,6 +9,7 @@ class OrdersController < ApplicationController
             basket_list.each do |basket|
                 basket.update(order: order)
             end
+            OrderMailer.send_order_data(order).deliver
             render json: {
                 msg: 'Ok',
                 error: false

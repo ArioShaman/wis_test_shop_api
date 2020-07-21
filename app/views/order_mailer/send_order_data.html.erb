@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    </head>
+    
+    <body>
+        <h1>Вы сделали заказ</h1>
+
+        <h2>Ваши данные:</h2>
+        <ul>
+            <li>
+                <b>ФИО:</b><%= @order.personal_data.full_name %>
+            </li>
+            <li>
+                <b>Номер телефона:</b><%= @order.personal_data.phone %>
+            </li>
+            <li>
+                <b>Email:</b> <%= @order.personal_data.email %>
+            </li>
+            <li>
+                <b>Адрес доставки:</b> <%= @order.personal_data.address %>
+            </li>
+            <% if @order.personal_data.comment.present? %>
+                <li>
+                    <b>Коментарий:</b> <%= @order.personal_data.comment %>
+                </li>
+            <% end %>
+        </ul>
+
+        <h2>Ваш заказ</h2>
+    
+        <% @order.baskets.each do |basket| %>
+            <h3><%= basket.phone.name %></h3>
+            <img  style="height: 150px; width: auto;"
+                src="http://localhost:3000<%= basket.phone.image.url %>">
+
+            <p><b>Цена за еденицу:</b> <%= basket.phone.price %></p>
+            <p><b>Количество:</b> <%= basket.count %></p>
+            <hr>
+        <% end %>
+        <h2>ИТОГО</h2>
+        <h3><%= @total_cost %> руб.</h3>
+    </body>
+
+</html>

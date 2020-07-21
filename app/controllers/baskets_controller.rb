@@ -32,11 +32,9 @@ class BasketsController < ApplicationController
     end
 
     def add_to_basket
-        set_basket do |basket_el|
-            @basket_el = basket_el
-            if @basket_el.present?
-                @basket_el = Basket.create(phone: @phone, guest_user: @guest_user, count: params[:count])
-            end
+        set_phone_for_basket do |phone|
+            @phone = phone
+            @basket_el = Basket.create(phone: @phone, guest_user: @guest_user, count: params[:count])
             return @basket_el
         end
     end
@@ -64,6 +62,26 @@ class BasketsController < ApplicationController
             if @phone.present?
                 @basket_el = Basket.where(guest_user: @guest_user, phone: @phone).first
                 yield(@basket_el)
+            else
+                render json: {
+                    msg: "Phone not found",
+                    error: true
+                }
+            end
+        else
+            render json: {
+                msg: "User not found",
+                error: true
+            }
+        end
+    end
+
+    def set_phone_for_basket
+        @guest_user = GuestUser.where(token: params[:guest_user_id]).first
+        if @guest_user.present?
+            @phone = Phone.find(params[:phone_id])
+            if @phone.present?
+                yield(@phone)
             else
                 render json: {
                     msg: "Phone not found",

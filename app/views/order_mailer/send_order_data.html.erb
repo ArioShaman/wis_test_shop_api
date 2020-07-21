@@ -33,7 +33,7 @@
         <% @order.baskets.each do |basket| %>
             <h3><%= basket.phone.name %></h3>
             <img  style="height: 150px; width: auto;"
-                src="http://localhost:3000<%= basket.phone.image.url %>">
+                src="http://82.146.49.217:5000<%= basket.phone.image.url %>">
 
             <p><b>Цена за еденицу:</b> <%= basket.phone.price %></p>
             <p><b>Количество:</b> <%= basket.count %></p>

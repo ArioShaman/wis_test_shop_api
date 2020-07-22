@@ -1,5 +1,5 @@
 class OrderMailer < ApplicationMailer
-    default :from => 'ariosha6@gmail.com'
+    default :from => 'em5004.pileof.tech'
 
     def send_order_data(order)
         @user = order.personal_data.email

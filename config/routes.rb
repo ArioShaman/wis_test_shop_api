@@ -3,9 +3,13 @@ Rails.application.routes.draw do
 
     scope '/api', defaults: { format: :json } do
         
-        resources :phones, only: [:index]
+        resources :phones, only: [:index] do 
+            resources :comments, only: [:index, :create]
+        end
         resources :guest_users, only: [:show]
-        resources :orders, only: [:create]
+        resources :orders, only: [:create] do 
+            resources :comments, only: [:index, :create]
+        end
 
         post '/wish_lists/add_el/:guest_user_id' => 'wish_lists#add_to_wish_list'
         post '/wish_lists/remove_el/:guest_user_id' => 'wish_lists#remove_from_wish_list'

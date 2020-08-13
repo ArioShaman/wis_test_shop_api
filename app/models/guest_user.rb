@@ -8,7 +8,9 @@
 #  updated_at :datetime         not null
 #
 class GuestUser < ApplicationRecord
-    has_many :personal_datas
-    has_many :wish_lists
-    has_many :shoping_carts
+    has_many :personal_datas, dependent: :destroy
+    has_many :wish_lists, dependent: :destroy
+    has_many :shoping_carts, dependent: :destroy
+
+    has_many :comments, dependent: :destroy
 end

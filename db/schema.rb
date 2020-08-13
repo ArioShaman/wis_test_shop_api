@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_13_171330) do
+ActiveRecord::Schema.define(version: 2020_08_13_174933) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.string "text"
+    t.string "commentable_type"
+    t.bigint "commentable_id"
+    t.bigint "guest_user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
+    t.index ["guest_user_id"], name: "index_comments_on_guest_user_id"
+  end
 
   create_table "guest_users", force: :cascade do |t|
     t.string "token"

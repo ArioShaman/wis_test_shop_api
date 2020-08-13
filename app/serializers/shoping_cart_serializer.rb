@@ -1,4 +1,4 @@
-class BasketSerializer < ActiveModel::BasketSerializer
+class ShopingCartSerializer < ActiveModel::Serializer
     attributes :id, 
                :count,
                :created_at

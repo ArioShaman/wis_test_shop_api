@@ -10,5 +10,5 @@
 class GuestUser < ApplicationRecord
     has_many :personal_datas
     has_many :wish_lists
-    has_many :baskets
+    has_many :shoping_carts
 end

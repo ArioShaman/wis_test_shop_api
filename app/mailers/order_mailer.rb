@@ -4,8 +4,8 @@ class OrderMailer < ApplicationMailer
     def send_order_data(order)
         @user = order.personal_data.email
         @total_cost = 0
-        order.baskets.each do |basket|
-            @total_cost += basket.phone.price.to_f * basket.count
+        order.shoping_carts.each do |shoping_cart|
+            @total_cost += shoping_cart.phone.price.to_f * shoping_cart.count
         end
 
         @order = order

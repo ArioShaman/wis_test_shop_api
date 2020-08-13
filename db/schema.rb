@@ -10,22 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_20_082837) do
+ActiveRecord::Schema.define(version: 2020_08_13_171330) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "baskets", force: :cascade do |t|
-    t.bigint "guest_user_id"
-    t.bigint "phone_id"
-    t.integer "count", default: 1
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "order_id"
-    t.index ["guest_user_id"], name: "index_baskets_on_guest_user_id"
-    t.index ["order_id"], name: "index_baskets_on_order_id"
-    t.index ["phone_id"], name: "index_baskets_on_phone_id"
-  end
 
   create_table "guest_users", force: :cascade do |t|
     t.string "token"
@@ -58,6 +46,18 @@ ActiveRecord::Schema.define(version: 2020_07_20_082837) do
     t.string "image", default: ""
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "shoping_carts", force: :cascade do |t|
+    t.bigint "guest_user_id"
+    t.bigint "phone_id"
+    t.integer "count", default: 1
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "order_id"
+    t.index ["guest_user_id"], name: "index_shoping_carts_on_guest_user_id"
+    t.index ["order_id"], name: "index_shoping_carts_on_order_id"
+    t.index ["phone_id"], name: "index_shoping_carts_on_phone_id"
   end
 
   create_table "wish_lists", force: :cascade do |t|

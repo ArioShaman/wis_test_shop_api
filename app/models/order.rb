@@ -9,5 +9,5 @@
 #
 class Order < ApplicationRecord
     belongs_to :personal_data, optional: true
-    has_many :baskets
+    has_many :shoping_carts
 end

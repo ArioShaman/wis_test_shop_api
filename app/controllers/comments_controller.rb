@@ -11,10 +11,10 @@ class CommentsController < ApplicationController
         @comments = Comment.where( 
             commentable_id: @commentable_id, 
             commentable_type: @commentable_type
-        )
+        ).where(comment_id: nil)
 
         render json: @comments, 
-                include: "*.*", 
+                include: "**", 
                 adapter: :json,
                 status: 200
     end
@@ -43,9 +43,7 @@ class CommentsController < ApplicationController
         # Define comment owner
         @klass = @commentable_type.capitalize.constantize
         @model = @klass.find(@commentable_id)
-        p ">>>>"
-        puts "#{ap @model}"
-        
+
         # Get data from api
         @guest_user = GuestUser.find_by!(token: params[:token])
         @parent_comment = Comment.find(params[:comment_id])

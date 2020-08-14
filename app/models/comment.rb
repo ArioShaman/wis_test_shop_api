@@ -11,11 +11,10 @@
 #  updated_at       :datetime         not null
 #  comment_id       :bigint
 #
-class Comment < ApplicationRecord
-    
+class Comment < ApplicationRecord    
     belongs_to :commentable, polymorphic: true
     belongs_to :guest_user
     
+    belongs_to :comment
     has_many :comments
-
 end

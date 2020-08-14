@@ -17,11 +17,8 @@ class CommentSerializer < ActiveModel::Serializer
 
     attributes  :id,
                 :text,
-                :created_at,
-                # :commentable_type,
-                :comment_id
+                :created_at
 
-    # How to unshow array if collection is empty
     has_many :comments
 
     def owner

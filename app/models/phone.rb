@@ -11,4 +11,6 @@
 #
 class Phone < ApplicationRecord
 	mount_uploader :image, ItemImageUploader
+
+    has_many :comments, as: :commentable, dependent: :destroy
 end

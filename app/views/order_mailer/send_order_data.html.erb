@@ -30,13 +30,13 @@
 
         <h2>Ваш заказ</h2>
     
-        <% @order.baskets.each do |basket| %>
-            <h3><%= basket.phone.name %></h3>
+        <% @order.shoping_carts.each do |shoping_cart| %>
+            <h3><%= shoping_cart.phone.name %></h3>
             <img  style="height: 150px; width: auto;"
-                src="https://wisapi.pileof.tech<%= basket.phone.image.url %>">
+                src="https://wisapi.pileof.tech<%= shoping_cart.phone.image.url %>">
 
-            <p><b>Цена за еденицу:</b> <%= basket.phone.price %></p>
-            <p><b>Количество:</b> <%= basket.count %></p>
+            <p><b>Цена за еденицу:</b> <%= shoping_cart.phone.price %></p>
+            <p><b>Количество:</b> <%= shoping_cart.count %></p>
             <hr>
         <% end %>
         <h2>ИТОГО</h2>

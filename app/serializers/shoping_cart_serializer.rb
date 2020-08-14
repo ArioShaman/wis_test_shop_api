@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: baskets
+# Table name: shoping_carts
 #
 #  id            :bigint           not null, primary key
 #  guest_user_id :bigint
@@ -10,10 +10,12 @@
 #  updated_at    :datetime         not null
 #  order_id      :bigint
 #
-require 'test_helper'
+class ShopingCartSerializer < ActiveModel::Serializer
+    attributes :id, 
+               :count,
+               :created_at
+    
+    belongs_to :phone
 
-class BasketTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+
 end

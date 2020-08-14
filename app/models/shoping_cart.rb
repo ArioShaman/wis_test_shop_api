@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: baskets
+# Table name: shoping_carts
 #
 #  id            :bigint           not null, primary key
 #  guest_user_id :bigint
@@ -10,7 +10,7 @@
 #  updated_at    :datetime         not null
 #  order_id      :bigint
 #
-class Basket < ApplicationRecord
+class ShopingCart < ApplicationRecord
     belongs_to :guest_user, optional: true 
     belongs_to :phone
     belongs_to :order, optional: true

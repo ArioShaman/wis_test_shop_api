@@ -3,7 +3,7 @@ class ApplicationController < ActionController::API
     rescue_from ActiveRecord::RecordNotFound, with: :not_found_record
     rescue_from ActionController::RoutingError, with: :render_404
     rescue_from ActionController::UnpermittedParameters, with: :unpermited_params
-    
+
     def not_found_record
         render json: {
             msg: "Record not found",

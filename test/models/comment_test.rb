@@ -1,15 +1,19 @@
 # == Schema Information
 #
-# Table name: orders
+# Table name: comments
 #
 #  id               :bigint           not null, primary key
-#  personal_data_id :bigint
+#  text             :string
+#  commentable_type :string
+#  commentable_id   :bigint
+#  guest_user_id    :bigint
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  comment_id       :bigint
 #
 require 'test_helper'
 
-class OrderTest < ActiveSupport::TestCase
+class CommentTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

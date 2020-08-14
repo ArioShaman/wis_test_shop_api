@@ -9,9 +9,13 @@
 #  guest_user_id    :bigint
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  comment_id       :bigint
 #
 class Comment < ApplicationRecord
     
     belongs_to :commentable, polymorphic: true
     belongs_to :guest_user
+    
+    has_many :comments
+
 end
